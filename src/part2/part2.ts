@@ -14,6 +14,7 @@ export const countVowels = (s:string) : number =>
 
 /* Question 2 */
 export const isPalindrome = (s:string) : boolean =>
+    isPalindromeArray(stringToArray(spacesPunctutationsAndCapitalization(s)));
     
   
 /* Question 3 */
@@ -22,21 +23,25 @@ export type WordTree = {
     children: WordTree[];
 }
 
-export const treeToSentence: undefined = undefined;
+export const treeToSentence = (tree:WordTree) : string =>
 
-export const isPalindromeArray: (s : string[]) => boolean =  (s : string[]) => 
-    s.length === 0 || s.length === 1?
-        true: 
-        s[0] === s[s.length-1]? 
-            isPalindromeArray(s.slice(1, s.length-1)): 
-            false;
 
-export const getAllLowerCase: (arr: string[]) => string[] = (arr: string[]) => 
-    R.map(getLowerCase, arr);
 
-export const getLowerCase: (char: string) => string = (char: string) => 
-    char.charCodeAt(0) < 91? String.fromCharCode(char.charCodeAt(0) + 32): char;
-// export const removeFromString: (fullString :string, charToRemove: string) => string =  (str :string, charToRemove: string) =>
-//     str.split(charToRemove).join('');
-export const removeNonLetters: (str : string) => string = (str: string) => 
-    R.filter((char: string) => /[a-zA-Z]/.test(char),stringToArray(str)).join('');
+
+
+
+
+
+
+
+export const spacesPunctutationsAndCapitalization = (s:string) : string =>
+    R.pipe(
+        R.replace(/\s+/g, ''),
+        R.replace(/[^\w\s]/g, ''),
+        R.toLower,
+    )(s);
+
+export const isPalindromeArray = (s : string[]) : boolean =>
+    R.length(s) <= 1 ? true: 
+        !R.equals(R.head(s), R.last(s)) ? false:
+            isPalindromeArray(R.slice(1, R.length(s)-1, s));
