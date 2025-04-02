@@ -4,10 +4,17 @@ const stringToArray = R.split("");
 
 /* Question 1 */
 const vowels: string[] = ['a', 'e', 'i', 'o', 'u'];
-export const countVowels:(s:string) => number =
+export const countVowels = (s:string) : number =>
+    R.pipe(
+        R.toLower,
+        stringToArray,
+        R.filter((char:string) => vowels.includes(char)),
+        R.length
+    )(s);
 
 /* Question 2 */
-export const isPalindrome: (s:string)=> boolean = (s:string) =>  isPalindromeArray(getAllLowerCase(stringToArray(removeNonLetters(s))))
+export const isPalindrome = (s:string) : boolean =>
+    
   
 /* Question 3 */
 export type WordTree = {
