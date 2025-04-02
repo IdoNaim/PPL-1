@@ -4,7 +4,7 @@ const stringToArray = R.split("");
 
 /* Question 1 */
 const vowels: string[] = ['a', 'e', 'i', 'o', 'u'];
-export const countVowels:(s:string)=> number = (s: string) => R.filter((c:string)=> vowels.indexOf(c)!=-1? true: false , getAllLowerCase (stringToArray(s))).length;
+export const countVowels:(s:string) => number =
 
 /* Question 2 */
 export const isPalindrome: (s:string)=> boolean = (s:string) =>  isPalindromeArray(getAllLowerCase(stringToArray(removeNonLetters(s))))
