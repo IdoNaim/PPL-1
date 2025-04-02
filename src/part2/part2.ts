@@ -24,15 +24,9 @@ export type WordTree = {
 }
 
 export const treeToSentence = (tree:WordTree) : string =>
-
-
-
-
-
-
-
-
-
+        tree.children.length === 0 ?
+            tree.root:
+                tree.root + ' ' + R.join(' ', R.map(treeToSentence, tree.children));
 
 export const spacesPunctutationsAndCapitalization = (s:string) : string =>
     R.pipe(
